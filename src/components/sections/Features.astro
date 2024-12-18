@@ -2,6 +2,7 @@
 import Container from "../shared/Container.astro";
 import Paragraph from "../shared/Paragraph.astro";
 import Title from "../shared/Title.astro";
+import { Picture } from "astro:assets";
 
 ---
 
@@ -10,28 +11,26 @@ import Title from "../shared/Title.astro";
         
         <div class="flex-1 flex midmd:w-7/12 lg:w-1/2 flex-col">
             <Title>
-                We provide Important Features for Digital Marketing
+                A ile to wszystko kosztuje? 🤔
             </Title>
             <Paragraph className="mt-8">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                <br> 
-                Minus, saepe aliquid autem alias vero distinctio dignissimos consequatur?
+                Rozumiemy, że jednym z kluczowych pytań, które zadajesz, jest: „Ile to będzie kosztować?”. Nie jesteśmy firmą, która ukrywa ceny w gąszczu paragrafów. Cenimy sobie transparentność i pragniemy, byś od samego początku wiedział, na czym stoisz. Wierzymy, że inwestycja w dobrze zaprojektowaną stronę lub sklep internetowy to inwestycja w rozwój Twojego biznesu. Z tego powodu nie podchodzimy do tworzenia witryn schematycznie - <strong>każdy projekt wyceniany jest indywidualnie</strong>. Bierzemy pod uwagę Twoje cele, potrzeby oraz specyfikację, aby wypracować najlepsze dla Ciebie rozwiązanie. Poniżej przedstawiamy orientacyjne widełki cenowe naszych usług, abyś miał ogólny zarys kosztów.
             </Paragraph>
             <Paragraph className="mt-2">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minus, saepe aliquid autem alias vero distinctio dignissimos consequatur?
+                <strong>Pamiętaj!</strong> Każdy projekt jest unikatowy, a ostateczna wycena zależy od wielu czynników takich jak m.in. stopień zaawansowania, unikatowe funkcjonalności, customowe rozwiązania czy liczba zakładek i produktów. W celu otrzymania precyzyjnej wyceny zachęcamy do kontaktu i omówienia szczegółów Twojego projektu.
             </Paragraph>
             <ul class="mt-8 space-y-4 text-heading-3 font-medium">
                 <li>
-                    <span class="font-bold bg-box-bg rounded-full w-8 h-8 mr-3 text-primary inline-flex justify-center items-center">&checkmark;</span> Web site Analysis
+                    <span class="font-bold bg-box-bg rounded-full w-8 h-8 mr-3 text-primary inline-flex justify-center items-center">&checkmark;</span> Strona internetowa (wizytówka, strona firmowa) – od 700 zł netto
                 </li>
                 <li>
-                    <span class="font-bold bg-box-bg rounded-full w-8 h-8 mr-3 text-primary inline-flex justify-center items-center">&checkmark;</span> Free optimazation.
+                    <span class="font-bold bg-box-bg rounded-full w-8 h-8 mr-3 text-primary inline-flex justify-center items-center">&checkmark;</span> Sklep internetowy (e-commerce) – od 1250 zł netto
                 </li>
                 <li>
-                    <span class="font-bold bg-box-bg rounded-full w-8 h-8 mr-3 text-primary inline-flex justify-center items-center">&checkmark;</span> Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                    <span class="font-bold bg-box-bg rounded-full w-8 h-8 mr-3 text-primary inline-flex justify-center items-center">&checkmark;</span> Wsparcie SEO dla Twojej strony – indywidualna wycena
                 </li>
                 <li>
-                    <span class="font-bold bg-box-bg rounded-full w-8 h-8 mr-3 text-primary inline-flex justify-center items-center">&checkmark;</span> Content Optimization.
+                    <span class="font-bold bg-box-bg rounded-full w-8 h-8 mr-3 text-primary inline-flex justify-center items-center">&checkmark;</span> Kompleksowa opieka nad stroną internetową (aktualizacje, optymalizacje, doradztwo w zakresie digital marketingu, analiza konkutencji itd)
                 </li>
             </ul>
         </div>
@@ -42,9 +41,16 @@ import Title from "../shared/Title.astro";
                 <div class="absolute  p-1 -top-4 md:-top-10 right-0 w-20 h-20 bg-gradient-to-br from-primary to-orange-400 rounded-full blur-3xl opacity-60"></div>
                 
                 <span class="absolute w-full aspect-[16/5] -skew-x-12 rounded-full bg-gradient-to-tr from-primary to-green-400 opacity-40 blur-2xl left-0 bottom-0"></span>
-                <img src={"/images/dev-with-c.webp"} alt="banner image" 
-                width="1240" height="1385"
-                class=" w-auto left-1/2 -translate-x-1/2 absolute bottom-0 max-h-full" />
+                
+                <Picture
+                  formats={['avif', 'webp']}
+                  src={"/images/dev-with-c.webp"}
+                  alt="Dev2Hola - Cennik tworzenia stron internetowych i marketingu online"
+                  class="w-auto left-1/2 -translate-x-1/2 absolute bottom-0 max-h-full"
+                  width="1240"
+                  height="1376"
+                  loading="lazy"
+                />
             </div>
         </div>
     </Container>
