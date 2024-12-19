@@ -1,9 +1,14 @@
+import defaultTheme from 'tailwindcss/defaultTheme'
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
 	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
 	darkMode: "class",
 	theme: {
 		extend: {
+		      fontFamily: {
+			sans: ['Raleway', ...defaultTheme.fontFamily.sans],
+			},
 			colors: {
 				body: "rgb(var(--color-bg))",
 				"box-bg": "rgb(var(--color-box))",
