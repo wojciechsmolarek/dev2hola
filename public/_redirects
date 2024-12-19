@@ -1,0 +1,6 @@
+# Redirect default Netlify subdomain to primary domain
+http://dev2hola.netlify.app/* https://dev2chola.pl/:splat 301!
+
+# Other redirects
+https://dev2hola.netlify.app/* https://dev2chola.pl/:splat 301!
+http://dev2chola.pl/* https://dev2chola.pl/:splat 301!
