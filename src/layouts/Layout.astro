@@ -24,63 +24,49 @@ const { title } = Astro.props;
     <Navbar />
     <slot />
     <Footer />
-	<script is:inline>
-	  const toggleMenu = document.querySelector("[data-toggle-nav]");
-	  const navbar = document.querySelector("[data-navbar]");
-	  const overlayNav = document.querySelector("[data-nav-overlay]");
-	  const body = document.body;
-	
-	  const toggleMenuState = (isOpen) => {
-	      if(toggleMenu){
-	           toggleMenu.setAttribute("data-open-nav", isOpen.toString());
-	      }
-	    
-	    if(overlayNav){
-	        overlayNav.setAttribute("data-is-visible", isOpen.toString());
-	    }
-	    
-	    body.classList.toggle("!overflow-y-hidden", isOpen);
-	     if(navbar){
-	        navbar.style.height = isOpen ? `${navbar.scrollHeight}px` : "0px";
-	    }
-	  };
-	    
-	  const handleClickOutside = () => {
-	    toggleMenuState(false);
-	  };
-	
-	  if (toggleMenu) {
-	    if (!(toggleMenu instanceof HTMLButtonElement)) {
-	      console.error("Element with data-toggle-nav is not a button");
-	      return;
-	    }
-	
-	    toggleMenu.addEventListener("click", (e) => {
-	      e.preventDefault();
-	      const isOpen = toggleMenu.getAttribute("data-open-nav") === "false";
-	      toggleMenuState(isOpen);
-	    });
-	  }
-	
-	  if (navbar) {
-	      if(!(navbar instanceof HTMLDivElement)){
-	           console.error("Element with data-navbar is not a div");
-	           return;
-	        }
-	    navbar.addEventListener("click", handleClickOutside);
-	  }
-	
-	  if (overlayNav) {
-	      if(!(overlayNav instanceof HTMLDivElement)){
-	           console.error("Element with data-nav-overlay is not a div");
-	           return;
-	        }
-	    overlayNav.addEventListener("click", handleClickOutside);
-	  }
-	</script>
-
   </body>
- 
+ <script is:inline>
+    const toggleMenu = document.querySelector(
+      "[data-toggle-nav]"
+    );
+    const navbar = document.querySelector("[data-navbar]") as HTMLDivElement;
+    const overlayNav = document.querySelector(
+      "[data-nav-overlay]"
+    ) as HTMLDivElement;
+    if (toggleMenu) {
+      toggleMenu.addEventListener("click", e => {
+        e.preventDefault();
+        if (toggleMenu.getAttribute("data-open-nav") === "false") {
+          toggleMenu.setAttribute("data-open-nav", "true");
+          overlayNav.setAttribute("data-is-visible", "true");
+          document.body.classList.add("!overflow-y-hidden");
+		  navbar.style.height = `${navbar.scrollHeight}px`
+
+        }else{
+			toggleMenu.setAttribute("data-open-nav", "false");
+        	overlayNav.setAttribute("data-is-visible", "false");
+        	document.body.classList.remove("!overflow-y-hidden");
+		  	navbar.style.height = "0px"
+		}
+		
+        
+      });
+
+      navbar.addEventListener("click", () => {
+        toggleMenu.setAttribute("data-open-nav", "false");
+        overlayNav.setAttribute("data-is-visible", "false");
+        document.body.classList.remove("!overflow-y-hidden");
+		  	navbar.style.height = "0px"
+      });
+
+      overlayNav.addEventListener("click", () => {
+        toggleMenu.setAttribute("data-open-nav", "false");
+        	overlayNav.setAttribute("data-is-visible", "false");
+        	document.body.classList.remove("!overflow-y-hidden");
+		  	navbar.style.height = "0px"
+      });
+    }
+  </script>
 </html>
 <style is:global>
   :root {
