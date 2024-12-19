@@ -28,7 +28,7 @@ const { title } = Astro.props;
  <script is:inline>
     const toggleMenu = document.querySelector(
       "[data-toggle-nav]"
-    );
+    ) as HTMLButtonElement;
     const navbar = document.querySelector("[data-navbar]") as HTMLDivElement;
     const overlayNav = document.querySelector(
       "[data-nav-overlay]"
