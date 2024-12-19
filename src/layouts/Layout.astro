@@ -26,47 +26,31 @@ const { title } = Astro.props;
     <Footer />
   </body>
  <script is:inline>
-    const toggleMenu = document.querySelector(
-      "[data-toggle-nav]"
-    ) as HTMLButtonElement;
-    const navbar = document.querySelector("[data-navbar]") as HTMLDivElement;
-    const overlayNav = document.querySelector(
-      "[data-nav-overlay]"
-    ) as HTMLDivElement;
+    const toggleMenu = document.querySelector("[data-toggle-nav]");
+    const navbar = document.querySelector("[data-navbar]");
+    const overlayNav = document.querySelector("[data-nav-overlay]");
+    
     if (toggleMenu) {
-      toggleMenu.addEventListener("click", e => {
-        e.preventDefault();
-        if (toggleMenu.getAttribute("data-open-nav") === "false") {
-          toggleMenu.setAttribute("data-open-nav", "true");
-          overlayNav.setAttribute("data-is-visible", "true");
-          document.body.classList.add("!overflow-y-hidden");
-		  navbar.style.height = `${navbar.scrollHeight}px`
+	toggleMenu.addEventListener("click", e => {
+	    e.preventDefault();
+	    const isOpen = toggleMenu.getAttribute("data-open-nav") === "true";
+	    toggleMenu.setAttribute("data-open-nav", String(!isOpen));
+	    overlayNav.setAttribute("data-is-visible", String(!isOpen));
+	    document.body.classList.toggle("!overflow-y-hidden");
+	    navbar.style.height = isOpen ? "0px" : `${navbar.scrollHeight}px`;
+	});
 
-        }else{
-			toggleMenu.setAttribute("data-open-nav", "false");
-        	overlayNav.setAttribute("data-is-visible", "false");
-        	document.body.classList.remove("!overflow-y-hidden");
-		  	navbar.style.height = "0px"
-		}
-		
-        
-      });
+	const closeMenu = () => {
+	    toggleMenu.setAttribute("data-open-nav", "false");
+	    overlayNav.setAttribute("data-is-visible", "false");
+	    document.body.classList.remove("!overflow-y-hidden");
+	    navbar.style.height = "0px";
+	};
 
-      navbar.addEventListener("click", () => {
-        toggleMenu.setAttribute("data-open-nav", "false");
-        overlayNav.setAttribute("data-is-visible", "false");
-        document.body.classList.remove("!overflow-y-hidden");
-		  	navbar.style.height = "0px"
-      });
-
-      overlayNav.addEventListener("click", () => {
-        toggleMenu.setAttribute("data-open-nav", "false");
-        	overlayNav.setAttribute("data-is-visible", "false");
-        	document.body.classList.remove("!overflow-y-hidden");
-		  	navbar.style.height = "0px"
-      });
+	navbar.addEventListener("click", closeMenu);
+	overlayNav.addEventListener("click", closeMenu);
     }
-  </script>
+</script>
 </html>
 <style is:global>
   :root {
