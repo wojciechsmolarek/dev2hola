@@ -3,9 +3,10 @@ export interface Props {
   className?: string;
   variant: "primary" | "secondary";
   ariaLabel?: string;
+  btnType?: string;
 }
 
-const { className = "", variant, ariaLabel } = Astro.props;
+const { className = "", variant, ariaLabel, btnType } = Astro.props;
 
 const themeStyles = {
   primary: "bg-primary border-transparent relative after:bg-[#172554] hover:border-[#172554]",
@@ -22,6 +23,7 @@ const themeStyles = {
     className
   ]}
   {...ariaLabel && { "aria-label": ariaLabel }}
+  {...btnType && { "type": btnType }}
 >
   <slot />
 </button>
